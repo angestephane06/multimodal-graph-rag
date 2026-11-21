@@ -1,0 +1,347 @@
+[
+  {
+    "question": "How many images show a sink?",
+    "objects": [
+      "sink"
+    ],
+    "coco": 20,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"sink\"})\nRETURN count(DISTINCT i)",
+    "answer": 22,
+    "graph": 22
+  },
+  {
+    "question": "How many images show a spoon?",
+    "objects": [
+      "spoon"
+    ],
+    "coco": 12,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"spoon\"})\nRETURN count(DISTINCT i)",
+    "answer": 10,
+    "graph": 10
+  },
+  {
+    "question": "How many images show a bench?",
+    "objects": [
+      "bench"
+    ],
+    "coco": 16,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"bench\"})\nRETURN count(DISTINCT i)",
+    "answer": 24,
+    "graph": 24
+  },
+  {
+    "question": "How many images show a keyboard?",
+    "objects": [
+      "keyboard"
+    ],
+    "coco": 8,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"keyboard\"})\nRETURN count(DISTINCT i)",
+    "answer": 8,
+    "graph": 8
+  },
+  {
+    "question": "How many images show a truck?",
+    "objects": [
+      "truck"
+    ],
+    "coco": 25,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"truck\"})\nRETURN count(DISTINCT i)",
+    "answer": 16,
+    "graph": 16
+  },
+  {
+    "question": "How many images show a toothbrush?",
+    "objects": [
+      "toothbrush"
+    ],
+    "coco": 5,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"toothbrush\"})\nRETURN count(DISTINCT i)",
+    "answer": 6,
+    "graph": 6
+  },
+  {
+    "question": "How many images show a skis?",
+    "objects": [
+      "skis"
+    ],
+    "coco": 9,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"skis\"})\nRETURN count(DISTINCT i)",
+    "answer": 9,
+    "graph": 9
+  },
+  {
+    "question": "How many images show a motorcycle?",
+    "objects": [
+      "motorcycle"
+    ],
+    "coco": 13,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"motorcycle\"})\nRETURN count(DISTINCT i)",
+    "answer": 13,
+    "graph": 13
+  },
+  {
+    "question": "How many images show a toilet?",
+    "objects": [
+      "toilet"
+    ],
+    "coco": 16,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: 'toilet'})\nRETURN count(DISTINCT i)",
+    "answer": 15,
+    "graph": 15
+  },
+  {
+    "question": "How many images show a handbag?",
+    "objects": [
+      "handbag"
+    ],
+    "coco": 27,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"handbag\"})\nRETURN count(DISTINCT i)",
+    "answer": 20,
+    "graph": 20
+  },
+  {
+    "question": "How many images show a cup?",
+    "objects": [
+      "cup"
+    ],
+    "coco": 39,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"cup\"})\nRETURN count(DISTINCT i)",
+    "answer": 42,
+    "graph": 42
+  },
+  {
+    "question": "How many images show a microwave?",
+    "objects": [
+      "microwave"
+    ],
+    "coco": 7,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"microwave\"})\nRETURN count(DISTINCT i)",
+    "answer": 5,
+    "graph": 5
+  },
+  {
+    "question": "How many images show a surfboard?",
+    "objects": [
+      "surfboard"
+    ],
+    "coco": 9,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"surfboard\"}) RETURN count(DISTINCT i)",
+    "answer": 9,
+    "graph": 9
+  },
+  {
+    "question": "How many images show a cake?",
+    "objects": [
+      "cake"
+    ],
+    "coco": 12,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"cake\"})\nRETURN count(DISTINCT i)",
+    "answer": 14,
+    "graph": 14
+  },
+  {
+    "question": "How many images show a hot dog?",
+    "objects": [
+      "hot dog"
+    ],
+    "coco": 5,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o:Object {name: \"hot dog\"})\nRETURN count(DISTINCT i)",
+    "answer": 4,
+    "graph": 4
+  },
+  {
+    "question": "How many images show both a bottle and a wine glass?",
+    "objects": [
+      "bottle",
+      "wine glass"
+    ],
+    "coco": 3,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"bottle\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"wine glass\"})\nRETURN count(DISTINCT i) AS image_count",
+    "answer": 3,
+    "graph": 3
+  },
+  {
+    "question": "How many images show both a clock and a person?",
+    "objects": [
+      "clock",
+      "person"
+    ],
+    "coco": 8,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"clock\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"person\"})\nRETURN count(DISTINCT i)",
+    "answer": 9,
+    "graph": 9
+  },
+  {
+    "question": "How many images show both a book and a tv?",
+    "objects": [
+      "book",
+      "tv"
+    ],
+    "coco": 6,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"book\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"tv\"})\nRETURN count(DISTINCT i)",
+    "answer": 8,
+    "graph": 8
+  },
+  {
+    "question": "How many images show both a chair and a mouse?",
+    "objects": [
+      "chair",
+      "mouse"
+    ],
+    "coco": 3,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"chair\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"mouse\"})\nRETURN count(DISTINCT i)",
+    "answer": 4,
+    "graph": 4
+  },
+  {
+    "question": "How many images show both a bowl and a dining table?",
+    "objects": [
+      "bowl",
+      "dining table"
+    ],
+    "coco": 13,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"bowl\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"dining table\"})\nRETURN count(DISTINCT i)",
+    "answer": 8,
+    "graph": 8
+  },
+  {
+    "question": "How many images show both a cup and a oven?",
+    "objects": [
+      "cup",
+      "oven"
+    ],
+    "coco": 3,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"cup\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"oven\"})\nRETURN count(DISTINCT i)",
+    "answer": 1,
+    "graph": 1
+  },
+  {
+    "question": "How many images show both a bottle and a bowl?",
+    "objects": [
+      "bottle",
+      "bowl"
+    ],
+    "coco": 8,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"bottle\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"bowl\"})\nRETURN count(DISTINCT i)",
+    "answer": 11,
+    "graph": 11
+  },
+  {
+    "question": "How many images show both a book and a bowl?",
+    "objects": [
+      "book",
+      "bowl"
+    ],
+    "coco": 3,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"book\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"bowl\"})\nRETURN count(DISTINCT i)",
+    "answer": 3,
+    "graph": 3
+  },
+  {
+    "question": "How many images show both a dining table and a fork?",
+    "objects": [
+      "dining table",
+      "fork"
+    ],
+    "coco": 14,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(:Object {name: \"dining table\"}), (i:Image)-[:CONTAINS]->(:Object {name: \"fork\"})\nRETURN count(DISTINCT i)",
+    "answer": 12,
+    "graph": 12
+  },
+  {
+    "question": "How many images show both a person and a truck?",
+    "objects": [
+      "person",
+      "truck"
+    ],
+    "coco": 15,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"person\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"truck\"})\nRETURN count(DISTINCT i)",
+    "answer": 9,
+    "graph": 9
+  },
+  {
+    "question": "How many images show both a bottle and a cake?",
+    "objects": [
+      "bottle",
+      "cake"
+    ],
+    "coco": 3,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"bottle\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"cake\"})\nRETURN count(DISTINCT i)",
+    "answer": 4,
+    "graph": 4
+  },
+  {
+    "question": "How many images show both a dining table and a spoon?",
+    "objects": [
+      "dining table",
+      "spoon"
+    ],
+    "coco": 5,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"dining table\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"spoon\"})\nRETURN count(DISTINCT i)",
+    "answer": 4,
+    "graph": 4
+  },
+  {
+    "question": "How many images show both a oven and a sink?",
+    "objects": [
+      "oven",
+      "sink"
+    ],
+    "coco": 4,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"oven\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"sink\"})\nRETURN count(DISTINCT i)",
+    "answer": 5,
+    "graph": 5
+  },
+  {
+    "question": "How many images show both a cup and a refrigerator?",
+    "objects": [
+      "cup",
+      "refrigerator"
+    ],
+    "coco": 4,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"cup\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"refrigerator\"})\nRETURN count(DISTINCT i)",
+    "answer": 3,
+    "graph": 3
+  },
+  {
+    "question": "How many images show both a car and a truck?",
+    "objects": [
+      "car",
+      "truck"
+    ],
+    "coco": 12,
+    "route": "graph",
+    "cypher": "MATCH (i:Image)-[:CONTAINS]->(o1:Object {name: \"car\"}), (i:Image)-[:CONTAINS]->(o2:Object {name: \"truck\"})\nRETURN count(DISTINCT i)",
+    "answer": 8,
+    "graph": 8
+  }
+]
