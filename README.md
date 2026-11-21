@@ -11,6 +11,8 @@ The images and their annotations come from COCO 2017, so every stage can be scor
 VLM saw, which index a question went to, whether the LLM's query was right, and whether the
 final count matches reality.
 
+![Demo: a counting question answered through the graph, then a semantic search, with the cited images](docs/demo.gif)
+
 ## Architecture
 
 ```mermaid
