@@ -1,0 +1,62 @@
+[
+  {
+    "query": "a cat resting indoors",
+    "target": "cat",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "people playing a sport on a field",
+    "target": "sports ball",
+    "route": "semantic",
+    "precision_at_5": 0.6
+  },
+  {
+    "query": "a plate of food on a table",
+    "target": "dining table",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "a busy city street with vehicles",
+    "target": "car",
+    "route": "semantic",
+    "precision_at_5": 0.8
+  },
+  {
+    "query": "a train at a station",
+    "target": "train",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "someone working on a laptop",
+    "target": "laptop",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "an aeroplane in the sky or on a runway",
+    "target": "airplane",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "a bedroom with a bed",
+    "target": "bed",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "a person riding a horse",
+    "target": "horse",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  },
+  {
+    "query": "a bathroom with a toilet and a sink",
+    "target": "toilet",
+    "route": "semantic",
+    "precision_at_5": 1.0
+  }
+]

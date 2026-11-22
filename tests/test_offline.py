@@ -84,6 +84,29 @@ def test_counting_questions_have_coco_answers() -> None:
     assert all(q["coco"] >= 3 for q in qs)
 
 
+def test_lenient_json_keeps_complete_names_of_a_cut_answer() -> None:
+    from mmgraphrag.ollama import parse_json_lenient
+
+    cut = '{"caption": "A room.", "scene": "bedroom", "objects": ["bed", "tv", "lamp", "lamp sh'
+    assert parse_json_lenient(cut) == {
+        "caption": "A room.",
+        "scene": "bedroom",
+        "objects": ["bed", "tv", "lamp"],
+    }
+    assert parse_json_lenient('{"objects": []}') == {"objects": []}
+    with pytest.raises(ValueError):
+        parse_json_lenient("")
+
+
+def test_dev_split_is_disjoint_from_evaluation_images() -> None:
+    from mmgraphrag.coco import select_dev_images
+
+    images = {i: {} for i in range(300)}
+    test = select_images(images, 100)
+    dev = select_dev_images(images, test, n=50)
+    assert len(dev) == 50 and not set(dev) & set(test)
+
+
 def test_selection_is_deterministic() -> None:
     images = {i: {} for i in range(100)}
     assert select_images(images, 10) == select_images(images, 10)

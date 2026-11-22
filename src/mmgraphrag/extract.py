@@ -13,12 +13,45 @@ from typing import Any
 from mmgraphrag.config import SETTINGS
 from mmgraphrag.ollama import describe_image
 
-PROMPT = """Describe this photo for a search index. Answer with a JSON object only:
+PROMPT_V1 = """Describe this photo for a search index. Answer with a JSON object only:
 {{"caption": "<one factual sentence>",
   "scene": "<one or two words: e.g. kitchen, street, beach, living room, field>",
   "objects": ["<object>", ...]}}
 List every distinct kind of object you can actually see, once each. When an object matches one
 of these category names, use that exact name: {categories}. Do not guess objects you cannot see."""
+
+PROMPTS = {"v1": PROMPT_V1, "v2": PROMPT_V1, "v3": PROMPT_V1}
+
+# v2 and v3 = the same description, then a second look: the model checks the category names it
+# listed against the image. Listing every category name primes the model to "see" some of them.
+# v2 checks all names in one question; on busy scenes the model recites most of the category
+# list and confirms it all at once. v3 asks one yes/no question per name instead.
+VERIFY_PROMPT = """Look at the photo again. For each name below, answer true only if at least one
+such object is clearly visible in the photo, otherwise false. Answer with a JSON object only,
+mapping each name to true or false: {names}"""
+
+VERIFY_ONE_PROMPT = """Is there at least one {name} clearly visible in this photo? Answer with a
+JSON object only: {{"visible": true}} or {{"visible": false}}."""
+
+
+def verify_objects(
+    image_path: Path, objects: list[str], categories: list[str], one_by_one: bool = False
+) -> list[str]:
+    """Keep the category objects the model confirms; free-form names are kept as they are."""
+    known = set(categories)
+    to_check = [o for o in objects if o in known]
+    if not to_check:
+        return objects
+    if one_by_one:
+        rejected = {
+            o
+            for o in to_check
+            if describe_image(image_path, VERIFY_ONE_PROMPT.format(name=o)).get("visible") is False
+        }
+    else:
+        answer = describe_image(image_path, VERIFY_PROMPT.format(names=json.dumps(to_check)))
+        rejected = {o for o in to_check if answer.get(o) is False}
+    return [o for o in objects if o not in rejected]
 
 
 def normalise_objects(objects: object, categories: list[str]) -> list[str]:
@@ -40,24 +73,34 @@ def normalise_objects(objects: object, categories: list[str]) -> list[str]:
     return out
 
 
-def extract_all(ids: list[int], files: dict[int, str], categories: list[str]) -> dict[str, Any]:
-    out_dir = SETTINGS.extractions_dir
+def extract_all(
+    ids: list[int], files: dict[int, str], categories: list[str], out_dir: Path | None = None
+) -> dict[str, Any]:
+    out_dir = out_dir or SETTINGS.extractions_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    prompt = PROMPT.format(categories=", ".join(categories))
+    prompt = PROMPTS[SETTINGS.prompt_version].format(categories=", ".join(categories))
     done, failed, start = 0, 0, time.time()
     for image_id in ids:
         target = out_dir / f"{image_id}.json"
         if target.exists():
             continue
         try:
-            raw = describe_image(SETTINGS.images_dir / files[image_id], prompt)
+            path = SETTINGS.images_dir / files[image_id]
+            raw = describe_image(path, prompt)
+            candidates = normalise_objects(raw.get("objects", []), categories)
+            objects = candidates
+            if SETTINGS.prompt_version in ("v2", "v3"):
+                one_by_one = SETTINGS.prompt_version == "v3"
+                objects = verify_objects(path, candidates, categories, one_by_one)
             record = {
                 "image_id": image_id,
                 "file": files[image_id],
                 "caption": str(raw.get("caption", "")).strip(),
                 "scene": str(raw.get("scene", "")).strip().lower(),
-                "objects": normalise_objects(raw.get("objects", []), categories),
+                "objects": objects,
+                "candidates": candidates,
                 "model": SETTINGS.vlm_model,
+                "prompt": SETTINGS.prompt_version,
             }
         except Exception as exc:  # recorded, the image is retried on the next run
             failed += 1
@@ -72,5 +115,6 @@ def extract_all(ids: list[int], files: dict[int, str], categories: list[str]) ->
     return {"described": done, "failed": failed, "seconds": elapsed}
 
 
-def load_extractions(data_dir: Path) -> list[dict[str, Any]]:
-    return [json.loads(p.read_text()) for p in sorted((data_dir / "extractions").glob("*.json"))]
+def load_extractions(run_dir: Path | None = None) -> list[dict[str, Any]]:
+    run_dir = run_dir or SETTINGS.extractions_dir
+    return [json.loads(p.read_text()) for p in sorted(run_dir.glob("*.json"))]

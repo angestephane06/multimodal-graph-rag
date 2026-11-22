@@ -94,12 +94,13 @@ def graph_count(objects: list[str]) -> int:
 
 
 def evaluate(gt: dict[int, dict[str, Any]], ids: list[int], categories: list[str]) -> dict:
-    records = {r["image_id"]: r for r in load_extractions(SETTINGS.data_dir)}
+    records = {r["image_id"]: r for r in load_extractions()}
     truth = {i: set(gt[i]["objects"]) for i in ids if i in records}
     preds = {i: set(records[i]["objects"]) for i in truth}
     report: dict[str, Any] = {
         "images": len(truth),
         "vlm": SETTINGS.vlm_model,
+        "prompt": SETTINGS.prompt_version,
         "llm": SETTINGS.llm_model,
         "extraction": extraction_scores(preds, truth, set(categories)),
     }

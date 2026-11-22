@@ -36,6 +36,15 @@ def select_images(images: dict[int, dict[str, object]], n: int, seed: int = 0) -
     return sorted(random.Random(seed).sample(ids, n))
 
 
+def select_dev_images(
+    images: dict[int, dict[str, object]], exclude: list[int], n: int = 100, seed: int = 1
+) -> list[int]:
+    """Development images, disjoint from the evaluation images, used to tune the prompt."""
+    taken = set(exclude)
+    ids = sorted(i for i in images if i not in taken)
+    return sorted(random.Random(seed).sample(ids, n))
+
+
 def download_images(data_dir: Path, ids: list[int], images: dict[int, dict[str, object]]) -> int:
     out = data_dir / "images"
     out.mkdir(parents=True, exist_ok=True)

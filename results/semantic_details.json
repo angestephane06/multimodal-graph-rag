@@ -9,19 +9,19 @@
     "query": "people playing a sport on a field",
     "target": "sports ball",
     "route": "semantic",
-    "precision_at_5": 0.6
+    "precision_at_5": 0.4
   },
   {
     "query": "a plate of food on a table",
     "target": "dining table",
     "route": "semantic",
-    "precision_at_5": 1.0
+    "precision_at_5": 0.8
   },
   {
     "query": "a busy city street with vehicles",
     "target": "car",
     "route": "semantic",
-    "precision_at_5": 0.8
+    "precision_at_5": 1.0
   },
   {
     "query": "a train at a station",
@@ -57,6 +57,6 @@
     "query": "a bathroom with a toilet and a sink",
     "target": "toilet",
     "route": "semantic",
-    "precision_at_5": 1.0
+    "precision_at_5": 0.8
   }
 ]

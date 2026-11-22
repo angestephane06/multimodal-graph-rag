@@ -1,0 +1,108 @@
+{
+  "images": 490,
+  "questions": 30,
+  "runs": {
+    "qwen3-vl_8b-v1": {
+      "extraction": {
+        "precision": 0.8571,
+        "recall": 0.8846,
+        "f1": 0.8707,
+        "most_missed": [
+          [
+            "dining table",
+            21
+          ],
+          [
+            "truck",
+            11
+          ],
+          [
+            "handbag",
+            10
+          ],
+          [
+            "person",
+            7
+          ],
+          [
+            "cup",
+            7
+          ]
+        ]
+      },
+      "counts_exact": 6,
+      "counts_within_1": 15,
+      "median_relative_error": 0.2,
+      "too_low": 13,
+      "too_high": 11
+    },
+    "qwen3-vl_8b-instruct-q8_0-v3": {
+      "extraction": {
+        "precision": 0.8967,
+        "recall": 0.8469,
+        "f1": 0.8711,
+        "most_missed": [
+          [
+            "person",
+            24
+          ],
+          [
+            "dining table",
+            24
+          ],
+          [
+            "car",
+            10
+          ],
+          [
+            "chair",
+            8
+          ],
+          [
+            "knife",
+            8
+          ]
+        ]
+      },
+      "counts_exact": 4,
+      "counts_within_1": 14,
+      "median_relative_error": 0.24,
+      "too_low": 22,
+      "too_high": 4
+    },
+    "qwen3-vl_30b-v1": {
+      "extraction": {
+        "precision": 0.8591,
+        "recall": 0.8946,
+        "f1": 0.8765,
+        "most_missed": [
+          [
+            "dining table",
+            15
+          ],
+          [
+            "truck",
+            10
+          ],
+          [
+            "handbag",
+            9
+          ],
+          [
+            "knife",
+            7
+          ],
+          [
+            "chair",
+            7
+          ]
+        ]
+      },
+      "counts_exact": 7,
+      "counts_within_1": 19,
+      "median_relative_error": 0.183,
+      "too_low": 17,
+      "too_high": 6
+    }
+  }
+}
